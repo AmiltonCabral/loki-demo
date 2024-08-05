@@ -28,8 +28,18 @@ function randomHexId(size) {
     .join("");
 }
 
+// 5% Error, 10% Warn, 30% Info, 55% Debug
 function randomLogLevel() {
-  return ["DEBUG", "INFO", "WARN", "ERROR"][Math.floor(Math.random() * 4)];
+  const randomNumber = Math.random() * 100;
+  if (randomNumber < 5) {
+    return "ERROR";
+  } else if (randomNumber < 10) {
+    return "WARN";
+  } else if (randomNumber < 30) {
+    return "INFO";
+  } else {
+    return "DEBUG";
+  }
 }
 
 function randomHttpMethod() {
@@ -135,5 +145,5 @@ export default function () {
     "is status 200": (r) => r.status === 200,
   });
 
-  sleep(1);
+  // sleep(1);
 }
