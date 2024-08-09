@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
   "links": [],
   "panels": [
     {
@@ -55,7 +54,7 @@
           "refId": "A"
         }
       ],
-      "title": "Panel Title",
+      "title": "Logs",
       "type": "logs"
     },
     {
@@ -93,10 +92,7 @@
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
-          "values": [
-            "value",
-            "percent"
-          ]
+          "values": ["value", "percent"]
         },
         "pieType": "donut",
         "reduceOptions": {
@@ -154,18 +150,14 @@
           "options": {
             "byVariable": false,
             "include": {
-              "names": [
-                "severity_text"
-              ]
+              "names": ["severity_text"]
             }
           }
         },
         {
           "id": "partitionByValues",
           "options": {
-            "fields": [
-              "severity_text"
-            ],
+            "fields": ["severity_text"],
             "keepFields": true,
             "naming": {
               "asLabels": true
@@ -177,9 +169,7 @@
           "options": {
             "includeTimeField": false,
             "mode": "reduceFields",
-            "reducers": [
-              "count"
-            ]
+            "reducers": ["count"]
           }
         }
       ],
@@ -200,6 +190,6 @@
   "timezone": "browser",
   "title": "New dashboard",
   "uid": "edub2qlszykn4a",
-  "version": 6,
+  "version": 1,
   "weekStart": ""
 }
