@@ -5,7 +5,8 @@ const url = "http://localhost:4318/v1/logs";
 
 export const options = {
   vus: 1,
-  duration: "30s",
+  iterations: 1000,
+  // duration: "30s",
 };
 
 function randomString(length) {
@@ -56,7 +57,7 @@ function randomReferenceUrl() {
   ];
 }
 
-export default function () {
+function getPayload() {
   const timestamp = randomTimestampUnixEpochNano();
   const payload = JSON.stringify({
     resourceLogs: [
@@ -74,7 +75,7 @@ export default function () {
         scopeLogs: [
           {
             scope: {
-              name: "my.library",
+              name: "test.volume.01",
               version: "1.0.0",
               attributes: [
                 {
@@ -136,14 +137,19 @@ export default function () {
     ],
   });
 
+  return payload;
+}
+
+export default function () {
   const headers = {
     "Content-Type": "application/json",
   };
-  let res = http.post(url, payload, { headers });
+  let res = http.post(url, getPayload(), { headers });
 
   check(res, {
     "is status 200": (r) => r.status === 200,
   });
 
-  // sleep(1);
+  // Sleep to avoid overloading the server and loose logs, 0.0001 is sufficient
+  sleep(0.0001);
 }
