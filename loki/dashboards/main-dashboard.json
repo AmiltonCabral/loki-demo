@@ -54,7 +54,7 @@
           "refId": "A"
         }
       ],
-      "title": "Logs",
+      "title": "Logs History",
       "type": "logs"
     },
     {
@@ -115,6 +115,7 @@
           "editorMode": "builder",
           "expr": "{service_name=\"k6mock\"}",
           "hide": false,
+          "maxLines": 5000,
           "queryType": "range",
           "refId": "A"
         }
@@ -176,7 +177,7 @@
       "type": "piechart"
     }
   ],
-  "refresh": "auto",
+  "refresh": "5s",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
@@ -188,8 +189,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "New dashboard",
+  "title": "Main dashboard",
   "uid": "edub2qlszykn4a",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }
