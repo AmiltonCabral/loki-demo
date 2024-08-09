@@ -91,19 +91,13 @@ function getPayload() {
                 timeUnixNano: timestamp,
                 observedTimeUnixNano: timestamp,
                 severityNumber: 10,
-                severityText: "Information",
+                severityText: randomLogLevel(),
                 traceId: randomHexId(32),
                 spanId: randomHexId(16),
                 body: {
                   stringValue: "Example log record",
                 },
                 attributes: [
-                  {
-                    key: "log.level",
-                    value: {
-                      stringValue: randomLogLevel(),
-                    },
-                  },
                   {
                     key: "http.method",
                     value: {
