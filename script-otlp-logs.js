@@ -6,7 +6,7 @@ const url = "http://localhost:4318/v1/logs";
 export const options = {
   vus: 1,
   // iterations: 1000,
-  duration: "30s",
+  duration: "5m",
 };
 
 function randomString(length) {
@@ -34,9 +34,9 @@ function randomLogLevel() {
   const randomNumber = Math.random() * 100;
   if (randomNumber < 5) {
     return "ERROR";
-  } else if (randomNumber < 10) {
+  } else if (randomNumber < 15) {
     return "WARN";
-  } else if (randomNumber < 30) {
+  } else if (randomNumber < 45) {
     return "INFO";
   } else {
     return "DEBUG";
