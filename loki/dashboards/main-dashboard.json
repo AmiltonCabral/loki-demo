@@ -184,13 +184,13 @@
     "list": []
   },
   "time": {
-    "from": "2024-08-09T04:37:34.925Z",
-    "to": "2024-08-09T16:37:34.927Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Main dashboard",
   "uid": "edub2qlszykn4a",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
