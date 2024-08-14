@@ -5,8 +5,8 @@ const url = "http://localhost:4318/v1/logs";
 
 export const options = {
   vus: 1,
-  iterations: 1000,
-  // duration: "30s",
+  // iterations: 1000,
+  duration: "30s",
 };
 
 function randomString(length) {
