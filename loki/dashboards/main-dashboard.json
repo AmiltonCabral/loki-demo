@@ -373,7 +373,7 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 20,
         "x": 4,
         "y": 8
       },
@@ -420,6 +420,6 @@
   "timezone": "browser",
   "title": "Main dashboard",
   "uid": "edub2qlszykn4a",
-  "version": 6,
+  "version": 7,
   "weekStart": ""
 }
