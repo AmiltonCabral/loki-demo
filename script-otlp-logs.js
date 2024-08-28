@@ -31,24 +31,25 @@ function randomHexId(size) {
 
 // 5% Error, 10% Warn, 30% Info, 55% Debug
 function randomLogLevel() {
-  const randomNumber = Math.random() * 100;
-  if (randomNumber < 5) {
-    return "ERROR";
-  } else if (randomNumber < 15) {
-    return "WARN";
-  } else if (randomNumber < 45) {
-    return "INFO";
-  } else {
-    return "DEBUG";
-  }
+  return ["ERROR", "WARN", "INFO", "DEBUG"][Math.floor(Math.random() * 4)];
 }
 
 function randomHttpMethod() {
-  return ["GET", "POST", "PUT", "DELETE"][Math.floor(Math.random() * 4)];
+  const randomNumber = Math.random() * 100;
+  if (randomNumber < 25) {
+    return "GET";
+  }
+  return "POST";
+
+  // GET, POST, PUT, DELETE
 }
 
 function randomHttpStatusCode() {
-  return ["200", "202", "400", "404", "500"][Math.floor(Math.random() * 5)];
+  const randomNumber = Math.random() * 100;
+  if (randomNumber < 50) {
+    return "200";
+  }
+  return "500";
 }
 
 function randomReferenceUrl() {
