@@ -29,19 +29,17 @@ function randomHexId(size) {
     .join("");
 }
 
-// 5% Error, 10% Warn, 30% Info, 55% Debug
 function randomLogLevel() {
   return ["ERROR", "WARN", "INFO", "DEBUG"][Math.floor(Math.random() * 4)];
 }
 
+// 25% GET, 75% POST
 function randomHttpMethod() {
   const randomNumber = Math.random() * 100;
   if (randomNumber < 25) {
     return "GET";
   }
   return "POST";
-
-  // GET, POST, PUT, DELETE
 }
 
 function randomHttpStatusCode() {
@@ -145,6 +143,6 @@ export default function () {
     "is status 200": (r) => r.status === 200,
   });
 
-  // Sleep to avoid overloading the server and loose logs, 0.0001 is sufficient
-  sleep(0.0001);
+  // Sleep to avoid overloading the server and loose logs, try not sleep less than 0.0001
+  sleep(0.0011);
 }
