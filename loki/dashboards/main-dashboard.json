@@ -134,10 +134,7 @@
           "showLegend": true,
           "sortBy": "Value",
           "sortDesc": false,
-          "values": [
-            "value",
-            "percent"
-          ]
+          "values": ["value", "percent"]
         },
         "pieType": "donut",
         "reduceOptions": {
@@ -196,18 +193,14 @@
           "options": {
             "byVariable": false,
             "include": {
-              "names": [
-                "otlp_sample_reason"
-              ]
+              "names": ["otlp_sample_reason"]
             }
           }
         },
         {
           "id": "partitionByValues",
           "options": {
-            "fields": [
-              "otlp_sample_reason"
-            ],
+            "fields": ["otlp_sample_reason"],
             "keepFields": true,
             "naming": {
               "asLabels": true
@@ -226,9 +219,7 @@
           "options": {
             "includeTimeField": false,
             "mode": "reduceFields",
-            "reducers": [
-              "count"
-            ]
+            "reducers": ["count"]
           }
         }
       ],
@@ -348,10 +339,7 @@
           "showLegend": true,
           "sortBy": "Value",
           "sortDesc": false,
-          "values": [
-            "value",
-            "percent"
-          ]
+          "values": ["value", "percent"]
         },
         "pieType": "donut",
         "reduceOptions": {
@@ -410,20 +398,14 @@
           "options": {
             "byVariable": false,
             "include": {
-              "names": [
-                "http_method",
-                "http_status_code"
-              ]
+              "names": ["http_method", "http_status_code"]
             }
           }
         },
         {
           "id": "partitionByValues",
           "options": {
-            "fields": [
-              "http_method",
-              "http_status_code"
-            ],
+            "fields": ["http_method", "http_status_code"],
             "keepFields": true,
             "naming": {
               "asLabels": false
@@ -448,9 +430,7 @@
           "options": {
             "includeTimeField": false,
             "mode": "reduceFields",
-            "reducers": [
-              "count"
-            ]
+            "reducers": ["count"]
           }
         }
       ],
@@ -498,9 +478,7 @@
         "orientation": "auto",
         "percentChangeColorMode": "same_as_value",
         "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
+          "calcs": ["mean"],
           "fields": "",
           "values": false
         },
@@ -598,11 +576,7 @@
       "id": 3,
       "options": {
         "legend": {
-          "calcs": [
-            "min",
-            "max",
-            "mean"
-          ],
+          "calcs": ["min", "max", "mean"],
           "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
