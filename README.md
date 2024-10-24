@@ -22,7 +22,7 @@ https://grafana.com/docs/loki/latest/get-started/quick-start/
 
 ## TCC
 
-Comparar algoritmos usando as `metricas` de `recall` e precision. Usando logs
+Comparar algoritmos usando as metricas de `recall` e `precision`. Usando logs
 estáticos.
 
 ## Old config.yaml

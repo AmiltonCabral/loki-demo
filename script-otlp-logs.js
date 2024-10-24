@@ -5,7 +5,7 @@ const url = "http://localhost:4318/v1/logs";
 
 export const options = {
   vus: 1,
-  // iterations: 100,
+  // iterations: 1,
   duration: "60m",
 };
 
@@ -36,7 +36,7 @@ function randomLogLevel() {
 // 25% GET, 75% POST
 function randomHttpMethod() {
   const randomNumber = Math.random() * 100;
-  if (randomNumber < 25) {
+  if (randomNumber < 50) {
     return "GET";
   }
   return "POST";
