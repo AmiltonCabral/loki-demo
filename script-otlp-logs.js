@@ -90,7 +90,8 @@ function getPayload() {
                 timeUnixNano: timestamp,
                 observedTimeUnixNano: timestamp,
                 severityNumber: 10,
-                severityText: randomLogLevel(),
+                // severityText: randomLogLevel(),
+                severityText: "Panic",
                 traceId: randomHexId(32),
                 spanId: randomHexId(16),
                 body: {
@@ -101,6 +102,12 @@ function getPayload() {
                     key: "http.method",
                     value: {
                       stringValue: randomHttpMethod(),
+                    },
+                  },
+                  {
+                    key: "skip_sampling",
+                    value: {
+                      stringValue: "false",
                     },
                   },
                   {
@@ -144,5 +151,5 @@ export default function () {
   });
 
   // Sleep to avoid overloading the server and loose logs, try not sleep less than 0.0001
-  sleep(0.0011);
+  sleep(0.0001);
 }
