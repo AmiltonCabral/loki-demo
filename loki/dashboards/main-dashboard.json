@@ -37,7 +37,7 @@
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
-            "axisPlacement": "right",
+            "axisPlacement": "left",
             "axisSoftMax": 100,
             "axisSoftMin": 0,
             "barAlignment": 0,
@@ -60,7 +60,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -85,7 +85,20 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "{service_name=\"k6mock\"}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Logs"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
@@ -119,7 +132,7 @@
           "refId": "A"
         }
       ],
-      "title": "Logs Volume",
+      "title": "Logs Per Second",
       "type": "timeseries"
     },
     {
@@ -233,8 +246,8 @@
     },
     {
       "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
+        "type": "prometheus",
+        "uid": "P4169E866C3094E38"
       },
       "fieldConfig": {
         "defaults": {
@@ -242,39 +255,81 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 18,
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 8,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
             }
           },
           "fieldMinMax": false,
-          "mappings": []
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "GET 500 http_method"
+              "options": "processor_adaptivesampler_kept_log_entry_total"
             },
             "properties": [
+              {
+                "id": "displayName",
+                "value": "Kept"
+              },
               {
                 "id": "color",
                 "value": {
                   "fixedColor": "green",
                   "mode": "fixed"
                 }
-              },
-              {
-                "id": "displayName",
-                "value": "500 GET"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "GET 200 http_method"
+              "options": "Total"
             },
             "properties": [
               {
@@ -283,48 +338,25 @@
                   "fixedColor": "blue",
                   "mode": "fixed"
                 }
-              },
-              {
-                "id": "displayName",
-                "value": "200 GET"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "POST 500 http_method"
+              "options": "processor_adaptivesampler_not_kept_log_entry_total"
             },
             "properties": [
               {
-                "id": "color",
-                "value": {
-                  "fixedColor": "super-light-orange",
-                  "mode": "fixed"
-                }
-              },
-              {
                 "id": "displayName",
-                "value": "500 POST"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "POST 200 http_method"
-            },
-            "properties": [
+                "value": "Not Kept"
+              },
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "semi-dark-red",
+                  "fixedColor": "red",
                   "mode": "fixed"
                 }
-              },
-              {
-                "id": "displayName",
-                "value": "200 POST"
               }
             ]
           }
@@ -336,22 +368,13 @@
         "x": 0,
         "y": 8
       },
-      "id": 6,
+      "id": 10,
       "options": {
-        "displayLabels": [],
         "legend": {
+          "calcs": ["last"],
           "displayMode": "table",
           "placement": "right",
-          "showLegend": true,
-          "sortBy": "Value",
-          "sortDesc": false,
-          "values": ["value", "percent"]
-        },
-        "pieType": "donut",
-        "reduceOptions": {
-          "calcs": [],
-          "fields": "/.*/",
-          "values": false
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -362,79 +385,68 @@
       "targets": [
         {
           "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
+            "type": "prometheus",
+            "uid": "P4169E866C3094E38"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "{service_name=\"k6mock\"}",
+          "expr": "processor_adaptivesampler_kept_log_entry_total{reason=\"emadynamic:emadynamic\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P4169E866C3094E38"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "processor_adaptivesampler_not_kept_log_entry_total",
+          "fullMetaSearch": false,
           "hide": false,
-          "maxLines": 1000,
-          "queryType": "range",
-          "refId": "A"
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
         }
       ],
-      "title": "Count HTTP",
+      "title": "Total vs. Kept logs",
       "transformations": [
         {
-          "id": "extractFields",
+          "id": "calculateField",
           "options": {
-            "format": "auto",
-            "jsonPaths": [
-              {
-                "alias": "INFO",
-                "path": "\"Object.severity_text\""
-              },
-              {
-                "path": ""
-              },
-              {
-                "path": ""
-              },
-              {
-                "path": ""
-              }
-            ],
-            "keepTime": false,
-            "replace": true,
-            "source": "labels"
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "{__name__=\"processor_adaptivesampler_not_kept_log_entry_total\", job=\"adaptive-sampler\", reason=\"emadynamic:emadynamic\"}",
+                "{__name__=\"processor_adaptivesampler_kept_log_entry_total\", job=\"adaptive-sampler\", reason=\"emadynamic:emadynamic\"}"
+              ],
+              "reducer": "sum"
+            }
           }
         },
         {
           "id": "filterFieldsByName",
           "options": {
-            "byVariable": false,
             "include": {
-              "names": ["otlp_sample_reason"]
+              "names": [
+                "Time",
+                "{__name__=\"processor_adaptivesampler_kept_log_entry_total\", job=\"adaptive-sampler\", reason=\"emadynamic:emadynamic\"}",
+                "Total",
+                "{__name__=\"processor_adaptivesampler_not_kept_log_entry_total\", job=\"adaptive-sampler\", reason=\"emadynamic:emadynamic\"}"
+              ]
             }
-          }
-        },
-        {
-          "id": "partitionByValues",
-          "options": {
-            "fields": ["otlp_sample_reason"],
-            "keepFields": true,
-            "naming": {
-              "asLabels": true
-            }
-          }
-        },
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "byVariable": false,
-            "include": {}
-          }
-        },
-        {
-          "id": "reduce",
-          "options": {
-            "includeTimeField": false,
-            "mode": "reduceFields",
-            "reducers": ["count"]
           }
         }
       ],
-      "type": "piechart"
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -652,214 +664,6 @@
         "type": "prometheus",
         "uid": "P4169E866C3094E38"
       },
-      "description": "Number of total kept log entry",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": true,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": "solid"
-            },
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 16
-      },
-      "id": 8,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P4169E866C3094E38"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "processor_adaptivesampler_kept_log_entry_total",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Total kept log",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P4169E866C3094E38"
-      },
-      "description": "Number of total not kept log entry",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": true,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": "solid"
-            },
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 16
-      },
-      "id": 9,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P4169E866C3094E38"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "processor_adaptivesampler_not_kept_log_entry_total",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Total not kept log",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P4169E866C3094E38"
-      },
       "description": "Measurement of sample rate per log entry",
       "fieldConfig": {
         "defaults": {
@@ -901,7 +705,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 24
+        "y": 16
       },
       "id": 7,
       "options": {
@@ -955,6 +759,6 @@
   "timezone": "browser",
   "title": "Main dashboard",
   "uid": "edub2qlszykn4a",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
