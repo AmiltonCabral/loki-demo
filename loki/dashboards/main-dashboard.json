@@ -263,7 +263,7 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 18,
+            "fillOpacity": 15,
             "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
@@ -284,7 +284,7 @@
             "spanNulls": false,
             "stacking": {
               "group": "A",
-              "mode": "normal"
+              "mode": "none"
             },
             "thresholdsStyle": {
               "mode": "off"
@@ -759,6 +759,6 @@
   "timezone": "browser",
   "title": "Main dashboard",
   "uid": "edub2qlszykn4a",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }

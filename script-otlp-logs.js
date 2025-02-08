@@ -4,9 +4,9 @@ import { check, sleep } from "k6";
 const url = "http://localhost:4318/v1/logs";
 
 export const options = {
-  vus: 1,
-  // iterations: 1,
-  duration: "60m",
+  vus: 2,
+  iterations: 300000,
+  duration: "5m",
 };
 
 function randomString(length) {
@@ -36,7 +36,7 @@ function randomLogLevel() {
 // 25% GET, 75% POST
 function randomHttpMethod() {
   const randomNumber = Math.random() * 100;
-  if (randomNumber < 50) {
+  if (randomNumber < 60) {
     return "GET";
   }
   return "POST";
@@ -44,7 +44,7 @@ function randomHttpMethod() {
 
 function randomHttpStatusCode() {
   const randomNumber = Math.random() * 100;
-  if (randomNumber < 50) {
+  if (randomNumber < 90) {
     return "200";
   }
   return "500";
@@ -151,5 +151,5 @@ export default function () {
   });
 
   // Sleep to avoid overloading the server and loose logs, try not sleep less than 0.0001
-  sleep(0.0001);
+  // sleep(0.0001);
 }
