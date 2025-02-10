@@ -5,8 +5,8 @@ const url = "http://localhost:4318/v1/logs";
 
 export const options = {
   vus: 2,
-  iterations: 300000,
-  duration: "5m",
+  // iterations: 300000,
+  duration: "60m",
 };
 
 function randomString(length) {
@@ -151,5 +151,5 @@ export default function () {
   });
 
   // Sleep to avoid overloading the server and loose logs, try not sleep less than 0.0001
-  // sleep(0.0001);
+  sleep(0.0001);
 }

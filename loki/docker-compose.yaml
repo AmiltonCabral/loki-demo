@@ -6,7 +6,8 @@ networks:
     driver: bridge
 
 volumes:
-  vmagentdata: {}
+  vmagentdata:
+    {}
     # vmdata: {}
 
 services:
@@ -197,6 +198,7 @@ services:
       - "--opentsdbListenAddr=:4242"
       - "--httpListenAddr=:8428"
       - "--influxListenAddr=:8089"
+      - "--opentelemetry.usePrometheusNaming"
       - "--vmalert.proxyURL=http://vmalert:8880"
     networks:
       - loki
