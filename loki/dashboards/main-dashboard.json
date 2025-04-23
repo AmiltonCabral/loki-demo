@@ -75,8 +75,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -115,11 +114,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -151,8 +151,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -185,7 +184,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -219,6 +218,7 @@
       "id": 1,
       "options": {
         "dedupStrategy": "none",
+        "enableInfiniteScrolling": false,
         "enableLogDetails": true,
         "prettifyLogMessage": false,
         "showCommonLabels": false,
@@ -227,7 +227,7 @@
         "sortOrder": "Descending",
         "wrapLogMessage": false
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -296,8 +296,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -377,11 +376,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -390,7 +390,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "processor_adaptivesampler_kept_log_entry_total{reason=\"emadynamic:emadynamic\"}",
+          "expr": "processor_adaptivesampler_kept_log_entry_total{service_name=\"otelcol\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -406,7 +406,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "processor_adaptivesampler_not_kept_log_entry_total{reason=\"emadynamic:emadynamic\"}",
+          "expr": "processor_adaptivesampler_not_kept_log_entry_total{service_name=\"otelcol\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -425,8 +425,8 @@
             "mode": "reduceRow",
             "reduce": {
               "include": [
-                "{__name__=\"processor_adaptivesampler_kept_log_entry_total\", reason=\"emadynamic:emadynamic\", service_instance_id=\"288c65c2-cba5-404e-b4f9-da4b1833b810\", service_name=\"otelcol\", service_version=\"0.103.0\"}",
-                "{__name__=\"processor_adaptivesampler_not_kept_log_entry_total\", reason=\"emadynamic:emadynamic\", service_instance_id=\"288c65c2-cba5-404e-b4f9-da4b1833b810\", service_name=\"otelcol\", service_version=\"0.103.0\"}"
+                "{__name__=\"processor_adaptivesampler_not_kept_log_entry_total\", reason=\"emadynamic\", service_instance_id=\"1a6f78c2-85fd-4d44-948c-014db3f55852\", service_name=\"otelcol\", service_version=\"0.103.0\"}",
+                "{__name__=\"processor_adaptivesampler_kept_log_entry_total\", reason=\"emadynamic\", service_instance_id=\"1a6f78c2-85fd-4d44-948c-014db3f55852\", service_name=\"otelcol\", service_version=\"0.103.0\"}"
               ],
               "reducer": "sum"
             }
@@ -558,11 +558,12 @@
           "values": false
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -707,7 +708,7 @@
           "reverse": false
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "datasource": {
@@ -732,7 +733,7 @@
   ],
   "preload": false,
   "refresh": "5s",
-  "schemaVersion": 40,
+  "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": []
@@ -745,6 +746,5 @@
   "timezone": "browser",
   "title": "Main dashboard",
   "uid": "edub2qlszykn4a",
-  "version": 1,
-  "weekStart": ""
+  "version": 1
 }

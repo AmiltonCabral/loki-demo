@@ -1,0 +1,41 @@
+receivers:
+  otlp:
+    protocols:
+      grpc: # default: localhost:4317
+      http: # default: localhost:4318
+
+processors:
+  adaptivesampler:
+    sampler_config_path: ./testdata/sampleConfigs.yaml
+    custom_config_endpoint: "http://localhost:8080/sampling_config"
+    custom_refresh_interval: 10s
+    config_path_refresh_interval: 1m
+
+exporters:
+  debug:
+    verbosity: detailed
+  otlphttp:
+    endpoint: http://localhost:3102/otlp
+
+service:
+  telemetry:
+    metrics:
+      readers:
+        - periodic:
+            interval: 1000
+            exporter:
+              otlp:
+                protocol: http/protobuf
+                endpoint: http://localhost:8428/opentelemetry/v1/metrics
+
+  pipelines:
+    logs:
+      receivers:
+        - otlp
+      processors:
+        # - batch
+        # - memory_limiter
+        - adaptivesampler
+      exporters:
+        # - debug
+        - otlphttp
